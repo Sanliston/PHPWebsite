@@ -4,6 +4,6 @@
 	define("HOST", "localhost");
 	define("DATABASE", "embargo_portal");
 	define("USERNAME","sanliston");
-	define("PASSWORD","password");
+	define("PASSWORD","");
 
 ?>
