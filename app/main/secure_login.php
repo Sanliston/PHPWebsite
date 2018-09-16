@@ -42,6 +42,7 @@ function callAPI(){ //GET
 	}
 
 	echo '\nresponse ok: response - '.$curl_response;
+	echo 'decoded json: '.$decoded["username"];
 	var_export($decoded->response);
 
 }

@@ -6,9 +6,6 @@ header("Content-Type: application/json");
 
 include_once($_SERVER['DOCUMENT_ROOT']."/web/api/config/database.php");
 include_once($_SERVER['DOCUMENT_ROOT']."/web/api/objects/members.php");
-include("config.php"); //is this needed?
-include("database.php"); //is this needed?
-
 
 $member = null;
 $email = $_GET["email"];
@@ -25,7 +22,7 @@ function checkPassword($email){
 
 function callAPI(){ //GET
 	
-	$external_ip = "109.156.113.227"; //change this to be the server's external ip
+	$external_ip = "142.93.32.127"; //change this to be the server's external ip
 	$service_url = $external_ip."/web/api/members/read_one.php?email=".$_GET["email"]; 
 	$curl = curl_init($service_url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
