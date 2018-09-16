@@ -154,6 +154,7 @@ body{ /*body margin seems to vary from browser to browser */
 	margin-top: 5px;
   flex-grow: 19;
   height: 20px;
+	margin-left: 15px;
 }
 
 input[type=text], input[type=password]{
@@ -161,7 +162,7 @@ input[type=text], input[type=password]{
 	color: #95A0A8;
 	width: 90%;
 	outline: none;
-	margin-left: 15px;
+
 }
 
 #landing_submit{
