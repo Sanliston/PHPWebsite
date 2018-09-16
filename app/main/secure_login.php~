@@ -4,8 +4,8 @@ header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json");
 
-include_once("/web/api/config/database.php");
-include_once("/web/api/objects/members.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/web/api/config/database.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/web/api/objects/members.php");
 include("config.php"); //is this needed?
 include("database.php"); //is this needed?
 
