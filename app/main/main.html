@@ -1,0 +1,88 @@
+<!DOCTYPEhtml>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../assets/css/main.css" media="all"> 
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+		<script type="text/javascript" src="../assets/js/script_main.js"> </script>
+		<title>Embargo Portal</title>
+	</head>
+
+	<body>
+		<div id="flexbox_main_global"> <!--column -->
+
+			<div id="flexbox_main_header"> <!-- row -->
+				<i id="header_logo_icon" class="material-icons">terrain</i>
+				<div id="header_title_text">
+					EMBARGO	
+				</div>
+			</div>
+
+			<div id="flexbox_main_body"> <!--row -->
+
+				<div id="flexbox_main_sections"> <!-- column -->
+
+					<div class="flexbox_section_element" id="overview_element">
+						<div class="highlight_strip" id="overview_highlight_strip"></div>
+						<i id="overview_icon" class="section_icons material-icons ">home</i>
+						<div id="overview_text" class="section_text">
+							Overview
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="analytics_element">
+						<div class="highlight_strip"></div>
+						<i id="analytics_icon" class="material-icons section_icons">bar_chart</i>
+						<div id="analytics_text" class="section_text">
+							Analytics
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="customers_element">
+						<div class="highlight_strip"></div>
+						<i id="customers_icon" class="material-icons section_icons">group</i>
+						<div id="customers_text" class="section_text">
+							Customers
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="rewards_element">
+						<div class="highlight_strip"></div>
+						<i id="rewards_icon" class="material-icons section_icons">card_giftcard</i>
+						<div id="rewards_text" class="section_text">
+							Rewards
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="notifications_element">
+						<div class="highlight_strip"></div>
+						<i id="notifications_icon" class="material-icons section_icons">notifications</i>
+						<div id="notifications_text" class="section_text">
+							Notifications
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="marketing_element">
+						<div class="highlight_strip"></div>
+						<i id="marketing_icon" class="material-icons section_icons">local_library</i>
+						<div id="marketing_text" class="section_text">
+							Marketing
+						</div>
+					</div>
+
+				</div>
+
+				<div id="main_content"> <!-- This will display content based on what section is clicked -->
+						<php?
+							echo "Hello world";
+							include("../../web/overview.php");
+
+						?>				
+
+				</div>
+			</div>
+
+			
+		</div>
+	</body>
+</html>

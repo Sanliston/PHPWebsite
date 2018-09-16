@@ -1,0 +1,50 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<div id="overview_flex">
+
+	<div id="overview_header">
+		Blueprint Cafe Overview
+	</div>
+
+	<div id="overview_totals">
+
+		<div class="overview_containers">
+			<div class="overview_strip"> </div> 
+			<div id="total_visits" class="total_containers">
+				<div id="total_visits_text">Total visits </div>
+				<div id="total_visits_value"> </div>
+			</div>
+		</div>
+
+
+		<div class="overview_containers">
+			<div class="overview_strip"> </div> 
+			<div id="total_claims" class="total_containers">
+				<div id="total_claims_text">Total claims </div>
+				<div id="total_claims_value"> </div>
+			</div>
+		</div>
+
+	<canvas id="overview_chart" width="400" height="400"></canvas>
+	<script type="text/javascript">
+			new Chart(document.getElementById("overview_chart"), {
+			type: 'line',
+			data: {
+				labels: ["May 2018","","","","","","","","", "Jun 2018","","","","","","","","", "Jul 2018","","","","","","","","", "Aug 2018","","","","","","","","", "Sep 2018"],
+				datasets: [{ 
+				    data: [0,2,4,4,5,5,6,7,8,9,15,29,60,120,130,150,151,153,153,155,160,170,190,210,215,220,225,230,232,233,239,250,252,253,254,255,259,260,261],
+				    label: "Total visits",
+				    borderColor: "#3e95cd",
+				    fill: true
+				  	}]
+			},
+			options: {
+				title: {
+				  display: true,
+				  text: 'Total visits'
+				}
+			}
+		});
+	</script>
+	</div>
+	
+</div>

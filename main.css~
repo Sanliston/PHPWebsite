@@ -1,0 +1,95 @@
+body{ /*body margin seems to vary from browser to browser */
+  margin: 0;
+  width: 100%;
+	overflow-x: hidden;
+}
+
+div,i{
+	border-style: solid;
+	border-width: 2px;
+}
+
+#flexbox_main_global{
+	display: flex;
+	flex-direction: column;
+	height: 99vh;
+	width: 100%;
+	justify-content: space-between;
+	
+}
+
+#flexbox_main_header{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	min-height: 30px;
+	flex: 1.2;
+	align-items: center;
+}
+
+#header_logo_icon{
+	font-size: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#flexbox_main_body{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	min-height: 200px;
+	flex: 19;
+}
+
+#flexbox_main_sections{
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	height: 100%;
+}
+
+#main_content{
+	flex: 4;
+	height: 100%;
+}
+
+.flexbox_section_element{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 30px;
+	margin-top: 10px;
+	align-items: center;
+	transition: 0.05s;
+}
+
+.flexbox_section_element:hover{
+	background: #F5F5F5;
+}
+
+i.section_icons{ /*Was having problems when just referring to the class, so decided to refer to the element type as well, hence i.section_icons as opposed to just .section_icons */
+	font-size: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 7px;
+	height: 100%;
+	align-items: center;
+	color: #95A0A8; 
+}
+
+.section_text{
+	color: #95A0A8;
+	font-size: 14px; 
+}
+
+.highlight_strip{ /*Highlight strip color will need to be changed by JS, when the whole element is clicked, and removed when another element is clicked. */
+	height: 100%;
+	width: 2px;
+	transition: 0.05s;
+	background: #FFFFFF;
+}
+
+
+
+
+

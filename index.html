@@ -1,0 +1,52 @@
+<!DOCTYPEhtml>
+<html>
+  <head>
+    <title>Embargo Portal</title>
+		<link rel="stylesheet" href="/app/assets/css/landing.css" media="all"> 
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+  </head>
+  
+  <body>
+		<div id = "global_flexbox">
+
+		  <form id="overall_landing_flexbox" action="/app/main/secure_login.php" method="get">
+
+		    <div id="flexbox_container_landing">
+		      <div id="flexbox_child_landing"> <!--This is also a flexbox in it self-->
+		        
+		        <div id="landing_title">
+		          <i class="material-icons" id="landing_logo">terrain</i>
+		          <div id="landing_title_text">
+		            EMBARGO
+		          </div>
+		          <div id="landing_subtitle_text">
+		            PORTAL
+		          </div>
+		        </div>
+					
+						
+						
+		        <div id="landing_email_form_container">
+		          <i class="material-icons" id="email_icon">email</i>
+								<input id="email_field" type="text" name="email" value="Email" onfocus="this.value=''"/>
+		        </div>
+
+		        <div id="landing_password_form_container">
+		          <i class="material-icons" id="password_icon">lock</i>
+								<input id="password_field" type="password" name="password"/>
+		        </div>
+
+		        <input type="submit" id="landing_submit" value="Login">
+
+		      </div>
+		    </div>
+		  </form>
+
+			<!--The part of the page that pops up when the user successfully Logs in. This will be manipulated by JS -->
+			<div id="flexbox_container_main_page">
+			</div>
+
+		</div> <!--end of global flexbox-->
+  </body>
+</html>

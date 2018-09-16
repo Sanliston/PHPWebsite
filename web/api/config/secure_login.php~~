@@ -1,0 +1,88 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: access");
+header("Access-Control-Allow-Credentials: true");
+header("Content-Type: application/json");
+
+include_once($_SERVER['DOCUMENT_ROOT']."/Embargo/web/api/config/database.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/Embargo/web/api/objects/members.php");
+include("config.php");
+include("database.php");
+
+$member = null;
+
+function checkPassword($email, $password){
+	$database = new Database();
+	$db = $database->getConnection();
+
+	$member = new Member($db);
+
+	//set emaial property of member to be edited
+	$member->email = $email;
+
+	//read the details of the member to be edited
+	$member->readOne();
+	$account_id = $member->account_id;
+
+	//create array
+	if($password = $member->password){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+function initializeSecureSssion(){
+	$session_name = "sec_session_id";
+	$secure = true;
+	
+	//stopping javascript from accessing session_id
+	$httponly = true;
+
+	//forcing session to only use cookies
+	if(ini_set("session.use_only_cookies", 1) === FALSE){
+		header("Location: ../error.php?err=Could not initiate a safe session (ini set)"); //what exactly does this do?
+		exit();
+	}
+
+	//Gets current cookie params
+	$cookie_params = session_get_cookie_params();
+	session_set_cookie_params($cookie_params["lifetime"], $cookie_params["path"], $cookie_params["domain"], $secure ,$httponly);
+
+	//sets the session name to the one set above
+	session_name($session_name);
+	session_start(); //start the PHP session
+	session_regenerate_id();  //regenerated the session, delete the old one
+}
+
+function login($email, $password){
+
+	//checking password will be done by the REST API
+	if(checkPassword($email, $password)){ //password is successful
+
+	}else{ //password is invalid - Log in attempt is logged in the record
+		
+		logAttempt();
+	}
+	
+}
+
+function logAttempt(){
+		
+		$now = time();
+		//query to insert record
+		$query = "INSERT INTO ". $member->table_name." VALUES (".$member->account_id.", ".$member->username.", ".$now")";
+		$stmt = $member->conn->prepare($query);
+
+		//execute
+		if($stmt->execute()){
+			return true;
+		}
+
+		return false;
+	}
+}
+
+
+?>

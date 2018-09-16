@@ -1,0 +1,74 @@
+<?php
+//This file is responible for reading the database for member information
+//required headers
+header("Access-Control-Allow-Origin");
+header("Content-Type: application/json;");
+
+
+function customError($errno, $errstr) {
+  echo "<b>Error:</b> [$errno] $errstr";
+}
+
+//set error handler
+set_error_handler("customError");
+
+echo "read started running";
+
+//include database and object files
+include_once "config/database.php";
+include_once "objects/members.php";
+
+echo"\n---read finished including";
+
+//instantiate database and member object
+
+echo"\n--About to go into try-catch statement";
+try{
+
+	echo"\n---made it inside try catch statement";
+	$database = new Database();
+}catch(Exception $e){
+	echo "\nencountered exception" . $e->getMessage();
+}
+
+echo"\nread got database object";
+
+$db = $database->getConnection();
+
+//instantiate object
+$member = new Member($db);
+
+//query members
+$stmt = $member->read();
+$num = $stmt->rowCount();
+
+echo("read.php reached function");
+
+//check if more than 0 record found
+if($num>0){
+	
+	//members array
+	$members_array = array();
+	$members_array["records"] = array();
+	
+	//retrieve table contents - fetch() is faster than fetchAll()
+	while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+		
+		extract($row);
+		
+		$member_item=array(
+			"account_id" => $account_id,
+			"username" => $username,
+			"email" => $email,
+			"password" => $password
+
+		);
+
+		array_push($members_array["records"], $member_item);
+	}
+
+	echo json_encode($members_array);
+}else{
+	echo json_encode(array("message"=>"no members found"));
+}
+?>
