@@ -16,7 +16,7 @@ login($email,$password);
 
 function callAPI(){ //GET
 	
-	$external_ip = "109.157.80.46"; //change this to be the server's external ip
+	$external_ip = "142.93.32.127"; //change this to be the server's external ip
 	$service_url = $external_ip."/web/api/members/read_one.php?email=".$_GET["email"]; 
 	$curl = curl_init($service_url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

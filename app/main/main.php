@@ -129,7 +129,7 @@
 						};
 
 				
-						var url = "109.157.80.46/../../../web/api/logs/create.php"; //change to match external URL of production server
+						var url = "142.93.32.127/../web/api/logs/create.php"; //change to match external URL of production server
 						xhttp.open("POST",url,true);
 						xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 						xhttp.send(jsonString);

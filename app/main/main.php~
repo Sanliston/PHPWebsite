@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="/app/assets/css/main.css" media="all">
+		<script src="/app/assets/js/prefixfree/prefixfree.min.js" type="application/javascript"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
 		<!--script type="text/javascript" src="./../app/assets/js/script_main.js"> </script> -->

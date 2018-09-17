@@ -75,7 +75,10 @@ function login($email, $password){
 	//get member information from REST API
 	$member_info = callAPI();
 
-	if($member_info['password']==$password){ //password is successful
+	if($member_info['password']==""){
+		invalid();
+
+	}else if($member_info['password']==$password){ //password is successful
 		initializeSecureSession($member_info['account_id']);
 		movePage();
 	}else{ //password is invalid - Log in attempt is logged in the record
