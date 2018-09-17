@@ -3,6 +3,7 @@
   <head>
     <title>Embargo Portal</title>
 		<link rel="stylesheet" href="/app/assets/css/landing.css" media="all"> 
+		<script src="/app/assets/js/prefixfree/prefixfree.min.js" type="application/javascript"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
   </head>
@@ -10,7 +11,7 @@
   <body>
 		<div id = "global_flexbox">
 
-		  <form id="overall_landing_flexbox" action="/app/main/main.php" method="get">
+		  <form id="overall_landing_flexbox" action="/app/main/secure_login.php" method="get">
 
 		    <div id="flexbox_container_landing">
 		      <div id="flexbox_child_landing"> <!--This is also a flexbox in it self-->

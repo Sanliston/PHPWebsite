@@ -83,7 +83,7 @@ body{ /*body margin seems to vary from browser to browser */
 
 #landing_logo, #landing_subtitle_text{
   margin:5px;
-}
+} 
 
 #landing_logo{
   width: 100px;

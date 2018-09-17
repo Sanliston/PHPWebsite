@@ -15,7 +15,7 @@ class Database{
 		try{
 			$this->conn = new PDO("pgsql:host=" . HOST . ";dbname=" . DATABASE, USERNAME, PASSWORD);
 			$this->conn->exec("set names utf8");
-			echo "log in successful";
+			echo "log in successful"; //These echos end up in the JSON so remove 
 
 		}catch(PDOException $e){
 			//contigency code

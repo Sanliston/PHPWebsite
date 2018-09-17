@@ -1,0 +1,8 @@
+<?php
+	$file = fopen($_SERVER['DOCUMENT_ROOT']."/app/main/overview/overview.html", "r"); 
+	fwrite($file, $str);
+	if($file == false){
+		echo "error - file not opened";
+	}
+	fclose($file);
+?>

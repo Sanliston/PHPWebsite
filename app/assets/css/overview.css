@@ -1,0 +1,79 @@
+@font-face{
+	font-family: kimberleyBlack;
+	src: url(/app/assets/fonts/kimberley.black.ttf);
+}
+
+#overview_flex{
+	display: flex;
+	flex-direction: column;
+	height: 99vh;
+	width: 100%;
+	justify-content: flex-start;
+	background: #F5F5F5;
+}
+
+#overview_totals{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.overview_containers{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: space-between;
+	background: #FFFFFF;
+	box-shadow: 0px 3px 7px rgba(0, 0, 0, .2);
+	height: 70px;
+	border-radius: 5px;
+	margin: 20px;
+}
+.overview_strip{
+	width: 100%;
+	height:5px;
+	background: #F11F62;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.container_text{
+	color: #6C727A;
+	margin: 10px;
+	font-size: 12px;
+}
+
+.visits_text{
+	margin: 10px;
+	font-size: 
+}
+
+#overview_header{
+	align-self: flex-start;
+	box-shadow: 0px 3px 2px rgba(0, 0, 0, .2);
+	background: #FFFFFF;
+	padding: 20px;
+	width: 100%;
+	height: 50px;
+}
+
+#overview_chart{
+	background: #FFFFFF;
+	box-shadow: 0px 3px 7px rgba(0, 0, 0, .2);
+	margin: 20px;
+	padding: 20px;
+	border-radius: 5px;
+	max-height: 75%;
+	
+}
+
+#overview_inside_chart{
+	margin: 20px;
+}
+
+.ct-chart{
+	max-width: 95%;
+}
+
+
+

@@ -36,7 +36,7 @@ class Member{
 	function readOne(){
 
 		//query to read a single record
-		$query = "SELECT * FROM " . $this->table_name . " WHERE USERNAME = '".$this->email."'";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE EMAIL = '".$this->email."'";
 		
 		//prepare query statement
 		$stmt = $this->conn->prepare($query);

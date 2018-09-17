@@ -7,10 +7,10 @@ header("Access-Control-Max-Age: 3600");
 Header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 //get database connection
-include_once($_SERVER['DOCUMENT_ROOT']."/Embargo/web/api/config/database.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/web/api/config/database.php");
 
 //Instantiate member object
-include_once($_SERVER['DOCUMENT_ROOT']."/Embargo/web/api/objects/members.php");
+include_once($_SERVER['DOCUMENT_ROOT']."/web/api/objects/members.php");
 
 $database = new Database();
 $db = $database->getConnection();

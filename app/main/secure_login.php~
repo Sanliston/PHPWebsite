@@ -10,19 +10,13 @@ include_once($_SERVER['DOCUMENT_ROOT']."/web/api/objects/members.php");
 $member = null;
 $email = $_GET["email"];
 $password = $_GET["password"];
-Echo "\nemail is: ".$email. " password is: ".$password;
-echo "\ncalling api";
 
-callAPI();
+login($email,$password);
 
-
-function checkPassword($email){
-	
-}
 
 function callAPI(){ //GET
 	
-	$external_ip = "142.93.32.127"; //change this to be the server's external ip
+	$external_ip = "109.157.80.46"; //change this to be the server's external ip
 	$service_url = $external_ip."/web/api/members/read_one.php?email=".$_GET["email"]; 
 	$curl = curl_init($service_url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -35,20 +29,21 @@ function callAPI(){ //GET
 	}
 
 	curl_close($curl);
-	$decoded = json_decode($curl_response);
+	$decoded = json_decode($curl_response, true);
 	
 	if(isset($decoded->response->status)&& $decoded->response->status == 'ERROR'){
 		die('error: '.$decoded->response->errormessage);
 	}
-
-	echo '\nresponse ok: response - '.$curl_response;
-	var_export($decoded->response);
+	
+	return $decoded;
 
 }
 
 
-function initializeSecureSssion(){
-	$session_name = "sec_session_id";
+function initializeSecureSession($member_info){ //TODO
+	$id = uniqid(rand(), true);
+	$md5c = md5($id);
+	$session_name = "sec_session_".$md5c;
 	$secure = true;
 	
 	//stopping javascript from accessing session_id
@@ -68,33 +63,42 @@ function initializeSecureSssion(){
 	session_name($session_name);
 	session_start(); //start the PHP session
 	session_regenerate_id();  //regenerated the session, delete the old one
+
+	//Set variables
+	$_SESSION['username'] = $member_info['username'];
+	$_SESSION['account_id'] = $member_info['account_id'];
+	$_SESSION['status'] = "logged in";
 }
 
 function login($email, $password){
 
-	//checking password will be done by the REST API
-	if(checkPassword($email, $password)){ //password is successful
+	//get member information from REST API
+	$member_info = callAPI();
 
+	if($member_info['password']==$password){ //password is successful
+		initializeSecureSession($member_info['account_id']);
+		movePage();
 	}else{ //password is invalid - Log in attempt is logged in the record
-		
+		//echo "invalid login details";
 		logAttempt();
+		//return page for invalid log in -- I'm doing this as an alternative to dynamic elements on the original landing page, because I found out that for that I would have needed to call the API through javascript.
+		//This is an attempt to mitigate that quickly enough, without rewritting the whole API call. Under normal circumstances, I would have rewrote the API call, but the deadline is fast approaching.
+		invalid();
 	}
 	
 }
 
+function movePage(){
+	header("Location: /app/main/main.php");
+}
+
+function invalid(){
+	header("Location: /invalid.html");
+}
+
 function logAttempt(){
 		
-		$now = time();
-		//query to insert record
-		$query = ""; //"INSERT INTO ". $member->table_name." VALUES (".$member->account_id.", ".$member->username.", ".$now")";
-		$stmt = $member->conn->prepare($query);
-
-		//execute
-		if($stmt->execute()){
-			return true;
-		}
-
-		return false;
+		//This will be done by POST API to Login_attempts table -- out of scope of this small project due to time constraints
 }
 
 

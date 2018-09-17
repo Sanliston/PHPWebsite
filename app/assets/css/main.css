@@ -1,11 +1,11 @@
 				@font-face{
 					font-family: alegreyaSansBold;
-					src: url(../app/assets/fonts/alegreya-sans-sc.bold.ttf);
+					src: url(/app/assets/fonts/alegreya-sans-sc.bold.ttf);
 				}
 
 				@font-face{
 					font-family: kimberleyBlack;
-					src: url(../app/assets/fonts/kimberley.black.ttf);
+					src: url(/app/assets/fonts/kimberley.black.ttf);
 				}
 
 				body{ /*body margin seems to vary from browser to browser */

@@ -1,7 +1,7 @@
 <!DOCTYPEhtml>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="./../app/assets/css/main.css" media="all">
+		<link rel="stylesheet" type="text/css" href="/app/assets/css/main.css" media="all">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
 		<!--script type="text/javascript" src="./../app/assets/js/script_main.js"> </script> -->
@@ -34,6 +34,7 @@
 				sectionText.css({"color":"#000000"});
 
 				selectedElementID = sectionElement.attr("id");
+				displayContent(selectedElementID);
 
 				//set event listeners
 				for(var i=0; i<sectionElements.length; i++){
@@ -67,9 +68,6 @@
 
 	
 				function sectionClickEvent(element){
-
-		
-					console.log("clicked"+$(this).attr("id"));
 		
 					//Set all other highlight strips to default color (white).
 					var arrayLength = sectionElements.length;
@@ -101,17 +99,109 @@
 					sectionText.css({"color":"#000000"});
 
 					selectedElementID = sectionElement.attr("id");
+					//alert("selected element is: "+selectedElementID);
+					logClick(selectedElementID);
+					displayContent(selectedElementID);
 				}
 
-				//function for logging
+				//function for logging - done through call to REST API on server
 				function logClick(id){
+						
+						//get time and date
+						var today = new Date();
+						var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(); //Y-M-D format
+						var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+						var timeDate = date+ ' ' + time;
+						//create json data
+						var jsonData = {};
+						jsonData["clicked_element"] = id;
+						jsonData["time"] = timeDate;
 
-					switch(id){
-			
-					}
+						var jsonString = JSON.stringify(jsonData);
+
+						var xhttp = new XMLHttpRequest();
+						xhttp.onreadystatechange = function(){
+								if(this.readyState == 4 && this.status == 200){
+										//for debugging
+										//alert(this.responseText);
+								}
+						};
+
+				
+						var url = "109.157.80.46/../../../web/api/logs/create.php"; //change to match external URL of production server
+						xhttp.open("POST",url,true);
+						xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+						xhttp.send(jsonString);
+
+						xhttp.onloadend = function(){
+		
+						};
+						
 
 				}
 
+				//Content display based on what has been clicked
+				function displayContent(selectedElementID){
+					
+					switch(selectedElementID){
+						case "overview_element":
+							//open html file
+							callPHP("overview.php");
+							setChart();
+							break;
+
+						case "click_logs":
+							//open html file
+							callPHP("click_logs.php");
+							break;
+
+						case "rss_feed":
+							//open html file
+							callPHP("rss_feed.php");
+							break;
+
+						case "analytics_element":
+							//open html file
+							callPHP("analytics.php");
+							break;
+
+						case "customers_element":
+							//open html file
+							callPHP("customers.php");
+							break;
+
+						case "rewards_element":
+							//open html file
+							callPHP("rewards.php");
+							break;
+
+						case "notifications_element":
+							//open html file
+							callPHP("notifications.php");
+							break;
+
+						case "marketing_element":
+							//open html file
+							callPHP("marketing.php");
+							break;
+
+					}
+					
+				}
+
+				function callPHP(path){
+					$.ajax({
+						url: path,
+						success: function(data){
+							$('#main_content').html(data);
+						}
+					});
+				}
+
+				function setChart(){
+
+
+				}
 
 			});
 		</script>
@@ -137,6 +227,22 @@
 						<i id="overview_icon" class="section_icons material-icons ">home</i>
 						<div id="overview_text" class="section_text">
 							Overview
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="click_logs">
+						<div class="highlight_strip"></div>
+						<i id="marketing_icon" class="material-icons section_icons">local_library</i>
+						<div id="marketing_text" class="section_text">
+							Click Logs
+						</div>
+					</div>
+
+					<div class="flexbox_section_element" id="rss_feed">
+						<div class="highlight_strip"></div>
+						<i id="marketing_icon" class="material-icons section_icons">local_library</i>
+						<div id="marketing_text" class="section_text">
+							RSS Feed
 						</div>
 					</div>
 
@@ -183,17 +289,9 @@
 				</div>
 
 				<div id="main_content"> <!-- This will display content based on what section is clicked -->
-
-						<?php
-							//include("overview.php");
-							//error handling
-
+			
 							
-							echo "document root: ".$_SERVER['DOCUMENT_ROOT'];
-							include($_SERVER['DOCUMENT_ROOT']."/Embargo/web/api/members/read.php");
-
-						?>				
-
+			
 				</div>
 			</div>
 

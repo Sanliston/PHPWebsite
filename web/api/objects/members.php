@@ -14,7 +14,6 @@ class Member{
 	
 	//constructor with db as database connection
 	public function __construct($db){
-		echo "\nmember object initialized";
 		$this->conn = $db;
 		$this->account_id = $this->generate_id();
 	}
